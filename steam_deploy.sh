@@ -89,7 +89,7 @@ if [ -n "$steam_totp" ]; then
   echo "#################################"
   echo ""
 else
-  if [ ! -n "$configVdf" ] || [ ! -n "$ssfnFileName" ] || [ ! -n "$ssfnFileContents" ]; then
+  if [ ! -n "$configVdf" ]; then
     echo "MFA inputs are missing or incomplete! Cannot proceed."
     exit 1
   fi
@@ -109,10 +109,6 @@ else
   echo "Copying $steamdir/config/config.vdf..."
   echo "$configVdf" | base64 -d > "$steamdir/config/config.vdf"
   chmod 777 "$steamdir/config/config.vdf"
-
-  echo "Copying $steamdir/ssfn..."
-  echo "$ssfnFileContents" | base64 -d > "$steamdir/$ssfnFileName"
-  chmod 777 "$steamdir/$ssfnFileName"
 
   echo "Finished Copying SteamGuard Files!"
   echo ""
